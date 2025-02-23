@@ -9,7 +9,7 @@ export function WorkSection() {
     <section className="space-y-8">
       <div>
         <h2 className="font-semibold text-lg">Intelletto</h2>
-        <p className="italic">Evergreen and envolving notes on various topics</p>
+        <p className="italic">Evergreen and envolving notes on various topics.</p>
       </div>
       <div className="grid gap-3 lg:grid-cols-2">
         {posts.map((post) => (

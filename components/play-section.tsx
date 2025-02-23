@@ -1,5 +1,3 @@
-import { Box, Cpu, Code } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 import { allProjects } from 'contentlayer/generated'
 import { compareDesc } from "date-fns"
 import { ProjectCard } from "./project-card"
@@ -10,7 +8,7 @@ export function PlaySection() {
     <section className="space-y-8">
       <div>
         <h2 className="font-semibold text-lg">Fantasia</h2>
-        <p className="italic">Artefacts beyond ideas</p>
+        <p className="italic">Artefacts beyond ideas.</p>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
