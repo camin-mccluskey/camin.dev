@@ -1,6 +1,7 @@
 import { allPosts } from 'contentlayer/generated'
 import { compareDesc } from "date-fns"
 import { PostCard } from "./post-card"
+import { Asterisk } from './icons/asterisk'
 
 
 export function WorkSection() {
@@ -8,7 +9,10 @@ export function WorkSection() {
   return (
     <section className="space-y-8">
       <div>
-        <h2 className="font-semibold text-lg">Intelletto</h2>
+        <span className="flex items-center justify-between gap-3">
+          <h2 className="font-semibold text-lg">Intelletto</h2>
+          <Asterisk className='size-8' />
+        </span>
         <p className="italic">Evergreen and envolving notes on various topics.</p>
       </div>
       <div className="grid gap-3 lg:grid-cols-2">
