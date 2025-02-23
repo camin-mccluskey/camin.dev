@@ -16,9 +16,10 @@ export const Project = defineDocumentType(() => ({
   name: 'Project',
   filePathPattern: `projects/**/*.md`,
   fields: {
-    title: { type: 'string', required: true },
+    name: { type: 'string', required: true },
     date: { type: 'date', required: true },
-    url: { type: 'string' }, // links directly to source
+    description: { type: 'string', required: true },
+    url: { type: 'string', required: true }, // links directly to source
   },
 }))
 
