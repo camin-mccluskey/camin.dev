@@ -12,19 +12,19 @@ export function Hero() {
       <ul className="space-y-1 pt-4">
         <li className="flex items-center gap-3">
           <TwitterIcon size={16} />
-          <a href="https://x.com/caminmc">
+          <a href="https://x.com/caminmc" className="link">
             @caminmc
           </a>
         </li>
         <li className="flex items-center gap-3">
           <LinkedinIcon size={16} />
-          <a href="https://www.linkedin.com/in/camin-mccluskey/">
+          <a href="https://www.linkedin.com/in/camin-mccluskey/" className="link">
             camin-mccluskey
           </a>
         </li>
         <li className="flex items-center gap-3">
           <GithubIcon size={16} />
-          <a href="https://github.com/camin-mccluskey">
+          <a href="https://github.com/camin-mccluskey" className="link">
             @camin_mccluskey
           </a>
         </li>

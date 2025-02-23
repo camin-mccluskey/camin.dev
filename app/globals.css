@@ -70,7 +70,10 @@
     font-family: 'IBM Plex Mono', monospace;
     font-size: 14px;
   }
-  a {
+}
+
+@layer components {
+  .link {
     @apply underline decoration-accent hover:text-accent transition-colors underline-offset-4 decoration-1
   }
 }
