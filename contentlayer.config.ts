@@ -35,7 +35,9 @@ export const Post = defineDocumentType(() => ({
     slug: { type: 'string', required: true, },
     tags: { type: 'list', of: { type: 'enum', options: POST_CATEGORIES }, default: [] },
     seo: {
-      type: 'nested', of: SEO
+      type: 'nested',
+      of: SEO,
+      required: true,
     }
   },
   computedFields: {
@@ -52,6 +54,7 @@ export const Project = defineDocumentType(() => ({
     description: { type: 'string', required: true },
     srcUrl: { type: 'string', required: true }, // links directly to source
   },
+  contentType: 'data',
 }))
 
 export default makeSource(

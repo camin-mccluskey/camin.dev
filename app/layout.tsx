@@ -24,6 +24,10 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata = {
   title: "Camin McCluskey",
   description: "[This] art is never finished, only abandoned",
+  openGraph: {
+    title: "Camin McCluskey",
+    images: ['/og'],
+  }
 }
 
 export default function RootLayout({

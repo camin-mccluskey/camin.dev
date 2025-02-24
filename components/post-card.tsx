@@ -8,7 +8,7 @@ export function PostCard(post: Post) {
       <span className="flex items-center justify-between py-2">
         <p className="underline group-hover:decoration-accent group-hover:text-accent transition-colors underline-offset-4 underline-2">{post.title}</p>
         <p className="text-sm text-muted">
-          {format(parseISO(post.date), 'LLLL d, yyyy')}
+          {format(parseISO(post.updatedAt), 'LLLL d, yyyy')}
         </p>
       </span>
       <div className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0" dangerouslySetInnerHTML={{ __html: post.body.html }} />
