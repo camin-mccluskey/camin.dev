@@ -1,5 +1,8 @@
 import { format, parseISO } from 'date-fns'
-import { allPosts } from 'contentlayer/generated'
+import { allPosts } from '@/lib/content'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import { Post as PostT, PostMdx } from '@/.contentlayer/generated'
+
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.slug }))
 
@@ -27,7 +30,21 @@ export default function Post({ params }: { params: { slug: string } }) {
         </time>
         <h1 className="text-3xl font-bold">{post.title}</h1>
       </div>
-      <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+      <Content {...post} />
     </article>
   )
+}
+
+const Content = (post: PostT | PostMdx) => {
+  if (post.type === 'PostMdx') return <RichContent {...post} />
+  return <PlainContent {...post} />
+}
+
+const PlainContent = (post: PostT) => {
+  return <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+}
+
+const RichContent = (post: PostMdx) => {
+  const MDXContent = useMDXComponent(post.body.code)
+  return <MDXContent />
 }

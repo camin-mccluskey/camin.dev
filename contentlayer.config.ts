@@ -24,22 +24,34 @@ const SEO = defineNestedType(() => ({
   },
 }))
 
+const PostFields = {
+  title: { type: 'string', required: true },
+  createdAt: { type: 'date', required: true },
+  updatedAt: { type: 'date', required: true },
+  isDraft: { type: 'boolean', required: true },
+  slug: { type: 'string', required: true, },
+  tags: { type: 'list', of: { type: 'enum', options: POST_CATEGORIES }, default: [] },
+  seo: {
+    type: 'nested',
+    of: SEO,
+    required: true,
+  }
+}
+
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `posts/**/*.md`,
-  fields: {
-    title: { type: 'string', required: true },
-    createdAt: { type: 'date', required: true },
-    updatedAt: { type: 'date', required: true },
-    isDraft: { type: 'boolean', required: true },
-    slug: { type: 'string', required: true, },
-    tags: { type: 'list', of: { type: 'enum', options: POST_CATEGORIES }, default: [] },
-    seo: {
-      type: 'nested',
-      of: SEO,
-      required: true,
-    }
+  fields: PostFields,
+  computedFields: {
+    url: { type: 'string', resolve: (post) => `/post/${post.slug}` },
   },
+}))
+
+export const PostMdx = defineDocumentType(() => ({
+  name: 'PostMdx',
+  filePathPattern: `posts/**/*.mdx`,
+  contentType: 'mdx',
+  fields: PostFields,
   computedFields: {
     url: { type: 'string', resolve: (post) => `/post/${post.slug}` },
   },
@@ -58,5 +70,5 @@ export const Project = defineDocumentType(() => ({
 }))
 
 export default makeSource(
-  { contentDirPath: 'content', documentTypes: [Post, Project] },
+  { contentDirPath: 'content', documentTypes: [Post, PostMdx, Project] },
 )

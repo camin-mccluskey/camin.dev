@@ -1,4 +1,4 @@
-import { allPosts } from 'contentlayer/generated'
+import { allPosts } from '@/lib/content'
 import { compareDesc } from "date-fns"
 import { PostCard } from "./post-card"
 import { Asterisk } from './icons/asterisk'

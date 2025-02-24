@@ -1,8 +1,8 @@
-import { Post } from 'contentlayer/generated'
+import { Post, PostMdx } from 'contentlayer/generated'
 import { format, parseISO } from "date-fns"
 import Link from "next/link"
 
-export function PostCard(post: Post) {
+export function PostCard(post: Post | PostMdx) {
   return (
     <Link href={post.url} className="pb-2 group">
       <span className="flex items-center justify-between py-2">
