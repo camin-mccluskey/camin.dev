@@ -15,7 +15,7 @@ export function WorkSection() {
         </span>
         <p className="italic">Evergreen and envolving notes on various topics.</p>
       </div>
-      <div className="space-y-3">
+      <div className="flex flex-col gap-y-2">
         {posts.map((post) => (
           <PostCard key={post._id} {...post} />
         ))}
