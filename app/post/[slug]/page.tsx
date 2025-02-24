@@ -36,8 +36,15 @@ export default function Post({ params }: { params: { slug: string } }) {
 }
 
 const Content = (post: PostT | PostMdx) => {
-  if (post.type === 'PostMdx') return <RichContent {...post} />
-  return <PlainContent {...post} />
+  return (
+    <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert">
+      {post.type === 'PostMdx' ? (
+        <RichContent {...post} />
+      ) : (
+        <PlainContent {...post} />
+      )}
+    </div>
+  )
 }
 
 const PlainContent = (post: PostT) => {
