@@ -4,8 +4,6 @@ import { allPosts } from 'contentlayer/generated'
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.slug }))
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-  console.log(allPosts)
-  console.log(params)
   const post = allPosts.find((post) => post.slug === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
   const { seo: { title, description } } = post

@@ -47,7 +47,7 @@ export const Post = defineDocumentType(() => ({
 
 export const Project = defineDocumentType(() => ({
   name: 'Project',
-  filePathPattern: `projects/**/*.md`,
+  filePathPattern: `projects/**/*.yaml`,
   fields: {
     name: { type: 'string', required: true },
     date: { type: 'date', required: true },

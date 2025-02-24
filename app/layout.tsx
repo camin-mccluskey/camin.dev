@@ -42,7 +42,7 @@ export default function RootLayout({
           manrope.variable,
           playfair.variable,
           ibmPlexMono.variable,
-          "min-h-screen bg-background text-foreground antialiased font-sans mx-8",
+          "min-h-screen bg-background text-foreground antialiased font-sans mx-8 max-w-[980px]",
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

@@ -11,7 +11,10 @@ export function PostCard(post: Post) {
           {format(parseISO(post.updatedAt), 'LLLL d, yyyy')}
         </p>
       </span>
-      <div className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+      <div
+        className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0 line-clamp-2 text-ellipsis"
+        dangerouslySetInnerHTML={{ __html: post.body.html }}
+      />
     </Link>
   )
 
