@@ -2,6 +2,7 @@ import { format, parseISO } from 'date-fns'
 import { allPosts } from '@/lib/content'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { Post as PostT, PostMdx } from '@/.contentlayer/generated'
+import { mdxComponents } from '@/components/mdx'
 
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.slug }))
@@ -53,5 +54,5 @@ const PlainContent = (post: PostT) => {
 
 const RichContent = (post: PostMdx) => {
   const MDXContent = useMDXComponent(post.body.code)
-  return <MDXContent />
+  return <MDXContent components={mdxComponents} />
 }
