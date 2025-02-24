@@ -5,10 +5,10 @@ import { GithubIcon, GlobeIcon } from "lucide-react"
 export function ProjectCard(project: Project) {
   return (
     <a href={project.srcUrl}>
-      <Card className="group p-0 transition cursor-pointer border-none rounded-sm shadow-none hover:border-accent">
+      <Card className="group p-2 transition cursor-pointer border-none rounded-sm shadow-none hover:border-accent">
         <CardContent className="p-0">
           <span className="flex items-center justify-between gap-3 mb-2">
-            <p className="sm:group-hover:underline underline sm:no-underline underline-offset-4 underline-2 decoration-accent">{project.name}</p>
+            <p className="sm:group-hover:underline underline sm:no-underline underline-offset-4 underline-2 decoration-accent group-hover:text-accent">{project.name}</p>
             <LinkIcon url={project.srcUrl} />
           </span>
           <p className="text-sm sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
