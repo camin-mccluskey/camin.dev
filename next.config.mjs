@@ -8,9 +8,9 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'en.wikipedia.org',
-        // port: '',
-        // pathname: '',
-        // search: '',
+        port: '',
+        pathname: '',
+        search: '',
       },
     ],
   },
