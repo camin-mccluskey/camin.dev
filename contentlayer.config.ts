@@ -1,4 +1,5 @@
 import { defineDocumentType, defineNestedType, makeSource } from 'contentlayer/source-files'
+import wikiLinkPlugin from "@portaljs/remark-wiki-link";
 
 const POST_CATEGORIES = [
   'short-read',
@@ -70,5 +71,10 @@ export const Project = defineDocumentType(() => ({
 }))
 
 export default makeSource(
-  { contentDirPath: 'content', documentTypes: [Post, PostMdx, Project] },
+  {
+    contentDirPath: 'content',
+    documentTypes: [Post, PostMdx, Project],
+    markdown: { remarkPlugins: [wikiLinkPlugin] },
+    mdx: { remarkPlugins: [wikiLinkPlugin] }
+  },
 )

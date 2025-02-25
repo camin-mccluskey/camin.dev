@@ -38,7 +38,7 @@ export default function Post({ params }: { params: { slug: string } }) {
 
 const Content = (post: PostT | PostMdx) => {
   return (
-    <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert">
+    <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert prose-a:link">
       {post.type === 'PostMdx' ? (
         <RichContent {...post} />
       ) : (
