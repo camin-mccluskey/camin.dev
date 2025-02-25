@@ -102,9 +102,11 @@ async function fetchFromGitHub(): Promise<void> {
     auth: process.env.GITHUB_PERSONAL_ACCESS_TOKEN
   });
 
-  const owner = process.env.GITHUB_REPO_OWNER || "yourusername";
-  const repo = process.env.GITHUB_REPO_NAME || "private-content-repo";
-  const contentPath = process.env.GITHUB_CONTENT_PATH || "content";
+  const owner = process.env.GITHUB_REPO_OWNER
+  const repo = process.env.GITHUB_REPO_NAME
+  const ghContentPath = process.env.GITHUB_CONTENT_PATH
+  const ghAssetsPath = process.env.GITHUB_ASSETS_PATH
+
   if (!owner) {
     console.error("❌ GITHUB_REPO_OWNER environment variable not set.");
     process.exit(1);
@@ -113,16 +115,23 @@ async function fetchFromGitHub(): Promise<void> {
     console.error("❌ GITHUB_REPO_NAME environment variable not set.");
     process.exit(1);
   }
-  if (!contentPath) {
+  if (!ghContentPath) {
     console.error("❌ GITHUB_CONTENT_PATH environment variable not set.");
     process.exit(1);
   }
+  if (!ghAssetsPath) {
+    console.error("❌ GITHUB_ASSETS_PATH environment variable not set.");
+    process.exit(1);
+  }
 
+  syncFromGithub(octokit, owner, repo, ghContentPath, "content")
+  syncFromGithub(octokit, owner, repo, ghAssetsPath, "public/assets")
+}
 
-  console.log(`📥 Fetching content from ${owner}/${repo}/${contentPath}`);
-
+async function syncFromGithub(octokit: Octokit, owner: string, repo: string, remotePath: string, localPath: string) {
+  console.log(`📥 Fetching content from ${owner}/${repo}/${remotePath}`);
   // Create content directory if it doesn't exist
-  const targetContentDir = path.join(process.cwd(), "content");
+  const targetContentDir = path.join(process.cwd(), localPath);
   if (!existsSync(targetContentDir)) {
     await mkdir(targetContentDir, { recursive: true });
   } else {
@@ -133,32 +142,12 @@ async function fetchFromGitHub(): Promise<void> {
 
   try {
     // Fetch directory contents recursively
-    await fetchDirectoryContents(octokit, owner, repo, contentPath, targetContentDir);
+    await fetchDirectoryContents(octokit, owner, repo, remotePath, targetContentDir);
     console.log("✅ Content successfully fetched from GitHub and saved!");
   } catch (error) {
     console.error(`❌ Error fetching content: ${error instanceof Error ? error.message : String(error)}`);
     process.exit(1);
   }
-
-  // Create content directory if it doesn't exist
-  const targetAssetsDir = path.join(process.cwd(), "pubilc/assets");
-  if (!existsSync(targetAssetsDir)) {
-    await mkdir(targetAssetsDir, { recursive: true });
-  } else {
-    // Clear existing content
-    rmSync(targetAssetsDir, { recursive: true, force: true });
-    await mkdir(targetAssetsDir, { recursive: true });
-  }
-
-  try {
-    // Fetch directory contents recursively
-    await fetchDirectoryContents(octokit, owner, repo, contentPath, targetAssetsDir);
-    console.log("✅ Content successfully fetched from GitHub and saved!");
-  } catch (error) {
-    console.error(`❌ Error fetching content: ${error instanceof Error ? error.message : String(error)}`);
-    process.exit(1);
-  }
-
 }
 
 async function fetchDirectoryContents(
