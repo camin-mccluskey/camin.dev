@@ -1,3 +1,3 @@
 {
-  "buildCommand": "bun run scripts/fetch-content.ts && bun run --bun next build"
+  "buildCommand": "bun run prepare-content && bun run --bun next build"
 }
