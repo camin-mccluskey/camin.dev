@@ -15,14 +15,15 @@ export const mdxComponents: MDXComponents = {
     const filename = src.split('/').pop()
     const publicPath = `/assets/${filename}`
 
+    const { height, width, ...rest } = props
     return (
       <Image
         src={publicPath}
         alt={alt || ""}
-        width={800} // You can set defaults or use fill with a container
-        height={600}
         style={{ maxWidth: "100%", height: "auto" }}
-        {...props}
+        width={width ? Number(width) : 800}
+        height={height ? Number(height) : 600}
+        {...rest}
       />
     );
   },
