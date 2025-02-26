@@ -38,3 +38,7 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer
+
+# content (rebuilt from source on deploy)
+content
+public/assets
