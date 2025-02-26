@@ -250,7 +250,7 @@ async function saveFile(
       await Bun.write(filePath, data);
     } else {
       // Handle binary data
-      await Bun.write(filePath, Buffer.from(data as ArrayBuffer));
+      await Bun.write(filePath, Buffer.from(data as unknown as ArrayBuffer));
     }
 
     console.log(`📄 Downloaded: ${file.name}`);

@@ -1,4 +1,4 @@
-import { defineDocumentType, defineNestedType, makeSource } from 'contentlayer/source-files'
+import { defineDocumentType, defineNestedType, FieldDefs, makeSource } from 'contentlayer/source-files'
 import wikiLinkPlugin from "@portaljs/remark-wiki-link";
 
 const POST_CATEGORIES = [
@@ -25,7 +25,7 @@ const SEO = defineNestedType(() => ({
   },
 }))
 
-const PostFields = {
+const PostFields: FieldDefs = {
   title: { type: 'string', required: true },
   createdAt: { type: 'date', required: true },
   updatedAt: { type: 'date', required: true },
