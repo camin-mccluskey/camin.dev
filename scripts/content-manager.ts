@@ -68,7 +68,16 @@ async function symLinkDirs(localDirPath: string, targetDirPath: string) {
 
   // Ensure target directory exists
   if (!existsSync(targetDirPath)) {
-    await mkdir(targetDirPath, { recursive: true });
+    try {
+      await mkdir(targetDirPath, { recursive: true });
+    } catch (error) {
+      // If directory already exists (EEXIST error), just continue
+      if (error instanceof Error && 'code' in error && error.code !== 'EEXIST') {
+        throw error;
+      } else {
+        console.log(`Directory ${targetDirPath} already exists, continuing...`);
+      }
+    }
   }
 
   // Create symlink in development mode
@@ -135,9 +144,18 @@ async function syncFromGithub(octokit: Octokit, owner: string, repo: string, rem
   if (!existsSync(targetContentDir)) {
     await mkdir(targetContentDir, { recursive: true });
   } else {
-    // Clear existing content
-    rmSync(targetContentDir, { recursive: true, force: true });
-    await mkdir(targetContentDir, { recursive: true });
+    try {
+      // Clear existing content
+      rmSync(targetContentDir, { recursive: true, force: true });
+      await mkdir(targetContentDir, { recursive: true });
+    } catch (error) {
+      // If directory already exists (EEXIST error), just continue without trying to create it
+      if (error instanceof Error && 'code' in error && error.code !== 'EEXIST') {
+        throw error;
+      } else {
+        console.log(`Directory ${targetContentDir} already exists, continuing...`);
+      }
+    }
   }
 
   try {
@@ -180,7 +198,16 @@ async function fetchDirectoryContents(
     if (item.type === "dir") {
       // Create directory if it doesn't exist
       if (!existsSync(localPath)) {
-        await mkdir(localPath, { recursive: true });
+        try {
+          await mkdir(localPath, { recursive: true });
+        } catch (error) {
+          // If directory already exists (EEXIST error), just continue
+          if (error instanceof Error && 'code' in error && error.code !== 'EEXIST') {
+            throw error;
+          } else {
+            console.log(`Directory ${localPath} already exists, continuing...`);
+          }
+        }
       }
 
       // Recursively fetch contents
