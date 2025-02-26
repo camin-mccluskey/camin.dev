@@ -31,6 +31,8 @@ export const metadata = {
   }
 }
 
+const analyticsSrc = `https://scripts.simpleanalyticscdn.com/latest.${process.env.VERCEL_ENV === 'production' ? '' : 'dev.'}js`
+
 export default function RootLayout({
   children,
 }: {
@@ -50,6 +52,7 @@ export default function RootLayout({
           <Header />
           {children}
         </ThemeProvider>
+        <script data-collect-dnt="true" async src={analyticsSrc}></script>
       </body>
     </html>
   )
