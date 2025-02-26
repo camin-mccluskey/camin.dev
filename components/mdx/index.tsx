@@ -1,4 +1,4 @@
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import type { MDXComponents } from 'mdx/types'
 
 export const mdxComponents: MDXComponents = {
