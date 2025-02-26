@@ -26,7 +26,8 @@ export const metadata = {
   description: "[This] art is never finished, only abandoned",
   openGraph: {
     title: "Camin McCluskey",
-    description: "Camin McCluskey's corner of the internet"
+    description: "Camin McCluskey's corner of the internet",
+    images: ['/og'],
   }
 }
 
