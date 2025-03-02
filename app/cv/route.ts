@@ -34,5 +34,5 @@ const cv = `
     - Writing and thinking better
     - Intelligence, Neuroscience, Philosophy & what LLMs teach us (if anything) about these things
     - SaaS / ML / Startups 
-    - React, Next.js, Node.js, Python, Typescript, Golang, Clojure,
+    - React, Next.js, Node.js, Python, Typescript, Golang, Clojure
 ` 
