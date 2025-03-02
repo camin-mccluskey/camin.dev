@@ -11,7 +11,7 @@ export function ProjectCard(project: Project) {
             <p className="sm:group-hover:underline underline sm:no-underline underline-offset-4 underline-2 decoration-accent group-hover:text-accent">{project.name}</p>
             <LinkIcon url={project.srcUrl} />
           </span>
-          <p className="text-sm sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+          <p className="text-sm md:opacity-0 md:group-hover:opacity-100 transition-opacity">
             {project.description}
           </p>
         </CardContent>

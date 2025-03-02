@@ -1,11 +1,26 @@
+"use client"
+
 import { allPosts } from '@/lib/content'
 import { compareDesc } from "date-fns"
 import { PostCard } from "./post-card"
 import { Asterisk } from './icons/asterisk'
-
+import { useState } from "react"
+import { Button } from "./ui/button"
 
 export function WorkSection() {
-  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.updatedAt), new Date(b.updatedAt)))
+  const [visibleCount, setVisibleCount] = useState(5)
+
+  const sortedPosts = allPosts.sort((a, b) =>
+    compareDesc(new Date(a.updatedAt), new Date(b.updatedAt))
+  )
+
+  const visiblePosts = sortedPosts.slice(0, visibleCount)
+  const hasMorePosts = visibleCount < sortedPosts.length
+
+  const showMorePosts = () => {
+    setVisibleCount(prev => prev + 10)
+  }
+
   return (
     <section className="space-y-8">
       <div>
@@ -16,10 +31,20 @@ export function WorkSection() {
         <p className="italic">Evergreen and envolving notes on various topics.</p>
       </div>
       <div className="flex flex-col gap-y-2">
-        {posts.map((post) => (
+        {visiblePosts.map((post) => (
           <PostCard key={post._id} {...post} />
         ))}
       </div>
+      {hasMorePosts && (
+        <div className="flex justify-center">
+          <Button
+            onClick={showMorePosts}
+            variant="outline"
+          >
+            Show more
+          </Button>
+        </div>
+      )}
     </section>
   )
 }
