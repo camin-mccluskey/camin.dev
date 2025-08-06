@@ -1,15 +1,5 @@
-import { format, parseISO } from 'date-fns'
-import { allPosts } from '@/lib/content'
-import { useMDXComponent } from 'next-contentlayer2/hooks'
-import { Post as PostT, PostMdx } from '@/.contentlayer/generated'
-import { mdxComponents } from '@/components/mdx'
 import { z } from 'zod'
 
-// TODO: 
-// - put some zod schema here
-// - pull from file in repo I guess
-// - output is just below
-//
 const btpPostSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),
