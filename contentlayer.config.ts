@@ -1,6 +1,7 @@
-import { defineDocumentType, defineNestedType, FieldDefs, makeSource } from 'contentlayer/source-files'
-import wikiLinkPlugin from "@portaljs/remark-wiki-link";
+import { defineDocumentType, defineNestedType, FieldDefs, makeSource } from 'contentlayer2/source-files'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import remarkWikiLink from '@flowershow/remark-wiki-link'
 
 const POST_CATEGORIES = [
   'short-read',
@@ -75,7 +76,7 @@ export default makeSource(
   {
     contentDirPath: 'content',
     documentTypes: [Post, PostMdx, Project],
-    markdown: { remarkPlugins: [wikiLinkPlugin, remarkGfm] },
-    mdx: { remarkPlugins: [wikiLinkPlugin, remarkGfm] }
+    markdown: { remarkPlugins: [remarkGfm, remarkMath, remarkWikiLink] },
+    mdx: { remarkPlugins: [remarkGfm, remarkMath, remarkWikiLink] }
   },
 )

@@ -1,9 +1,10 @@
 import { format, parseISO } from 'date-fns'
 import { allPosts } from '@/lib/content'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { Post as PostT, PostMdx } from '@/.contentlayer/generated'
 import { mdxComponents } from '@/components/mdx'
-
+import parse, { DOMNode } from 'html-react-parser';
+import { isValidElement, ReactNode } from 'react'
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.slug }))
 
@@ -48,8 +49,15 @@ const Content = (post: PostT | PostMdx) => {
   )
 }
 
+const imgTransform = (node: ReactNode) => {
+  if (isValidElement(node) && node.type === 'img') {
+    return <img src={`/assets/${node.props.src}`} alt={node.props.alt} />
+  }
+  return node
+}
+
 const PlainContent = (post: PostT) => {
-  return <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+  return <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert">{parse(post.body.html, { transform: imgTransform })}</div>
 }
 
 const RichContent = (post: PostMdx) => {

@@ -1,6 +1,6 @@
 import { format, parseISO } from 'date-fns'
 import { allPosts } from '@/lib/content'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { Post as PostT, PostMdx } from '@/.contentlayer/generated'
 import { mdxComponents } from '@/components/mdx'
 import { z } from 'zod'
