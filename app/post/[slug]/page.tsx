@@ -4,7 +4,6 @@ import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { Post as PostT, PostMdx } from '@/.contentlayer/generated'
 import { mdxComponents } from '@/components/mdx'
 import parse from 'html-react-parser';
-import { isValidElement, ReactNode } from 'react'
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.slug }))
 
@@ -49,15 +48,16 @@ const Content = (post: PostT | PostMdx) => {
   )
 }
 
-const imgTransform = (node: ReactNode) => {
-  if (isValidElement(node) && node.type === 'img') {
-    return <img src={`/assets/${node.props.src}`} alt={node.props.alt} />
-  }
-  return node
-}
-
 const PlainContent = (post: PostT) => {
-  return <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert">{parse(post.body.html, { transform: imgTransform })}</div>
+  const options = {
+    replace: (domNode: { type: string; name?: string; attribs?: { src?: string; alt?: string } }) => {
+      if (domNode.type === 'tag' && domNode.name === 'img') {
+        return <img src={`/assets/${domNode.attribs?.src}`} alt={domNode.attribs?.alt} />
+      }
+    }
+  }
+  
+  return <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 prose dark:prose-invert">{parse(post.body.html, options)}</div>
 }
 
 const RichContent = (post: PostMdx) => {
