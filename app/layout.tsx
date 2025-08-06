@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { Header } from "@/components/header"
+import Script from "next/script"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -52,7 +53,8 @@ export default function RootLayout({
           <Header />
           {children}
         </ThemeProvider>
-        <script data-collect-dnt="true" async src={analyticsSrc}></script>
+        <Script data-collect-dnt="true" async src={analyticsSrc} />
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" />
       </body>
     </html>
   )
