@@ -3,7 +3,7 @@ import { allPosts } from '@/lib/content'
 import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { Post as PostT, PostMdx } from '@/.contentlayer/generated'
 import { mdxComponents } from '@/components/mdx'
-import parse, { DOMNode } from 'html-react-parser';
+import parse from 'html-react-parser';
 import { isValidElement, ReactNode } from 'react'
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post.slug }))

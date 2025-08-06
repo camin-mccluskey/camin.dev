@@ -2,6 +2,7 @@ import { defineDocumentType, defineNestedType, FieldDefs, makeSource } from 'con
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import remarkWikiLink from '@flowershow/remark-wiki-link'
+import rehypeKatex from 'rehype-katex'
 
 const POST_CATEGORIES = [
   'short-read',
@@ -76,7 +77,7 @@ export default makeSource(
   {
     contentDirPath: 'content',
     documentTypes: [Post, PostMdx, Project],
-    markdown: { remarkPlugins: [remarkGfm, remarkMath, remarkWikiLink] },
-    mdx: { remarkPlugins: [remarkGfm, remarkMath, remarkWikiLink] }
+    markdown: { remarkPlugins: [remarkGfm, remarkMath, remarkWikiLink], rehypePlugins: [rehypeKatex] },
+    mdx: { remarkPlugins: [remarkGfm, remarkMath, remarkWikiLink], rehypePlugins: [rehypeKatex] }
   },
 )
