@@ -1,21 +1,17 @@
-import { z } from 'zod'
+import { type Post } from '@/.contentlayer/generated'
 
-const btpPostSchema = z.object({
-  slug: z.string().min(1),
-  title: z.string().min(1),
-  description: z.string().min(1),
-  body: z.string().min(1),
-})
-type PTBPost = z.infer<typeof btpPostSchema>
+type PTBPost = {
+  slug: string
+  title: string
+  description: string
+  body: string
+} 
 
 const POSTS: Array<PTBPost> = [
   { slug: 'something', title: 'Camin is something...', description: "Full prompt", body: 'Full post body' }
 ]
 
-
-export const generateStaticParams = async () => {
-  POSTS.map((post) => ({ slug: post.slug }))
-}
+export const generateStaticParams = async () => POSTS.map((post) => ({ slug: post.slug }))
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const post = POSTS.find((post) => post.slug === params.slug)
