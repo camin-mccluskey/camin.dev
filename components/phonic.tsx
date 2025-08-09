@@ -5,9 +5,9 @@ import { Volume1Icon } from "lucide-react";
 export function Phonic() {
 
   const playName = () => {
-    const utterance = new window.SpeechSynthesisUtterance("Camin McCluskey");
-    utterance.lang = "en-GB"; // Use British English voice
-    window.speechSynthesis.speak(utterance);
+    const utterance = new window.SpeechSynthesisUtterance("Camin McCluskey")
+    utterance.lang = "en-GB"
+    window.speechSynthesis.speak(utterance)
   }
 
   return (

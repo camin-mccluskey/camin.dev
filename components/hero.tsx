@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <header className="space-y-3 md:space-y-4 py-16">
       <div>
-        <h1 className="font-bold text-lg">Camin McCluskey</h1>
+        <h1 className="font-bold text-xl">Camin McCluskey</h1>
         <Phonic />
       </div>
       <div>
