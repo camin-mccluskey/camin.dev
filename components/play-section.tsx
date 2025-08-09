@@ -9,7 +9,7 @@ export function PlaySection() {
     <section className="space-y-8">
       <div>
         <span className="flex items-center justify-between gap-3">
-          <h2 className="font-semibold text-lg">Fantasia</h2>
+          <h2 className="font-semibold text-lg">Projects</h2>
           <Asterisk className='size-8' />
         </span>
         <p className="italic">Artefacts beyond ideas.</p>

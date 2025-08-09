@@ -25,7 +25,7 @@ export function WorkSection() {
     <section className="space-y-8">
       <div>
         <span className="flex items-center justify-between gap-3">
-          <h2 className="font-semibold text-lg">Intelletto</h2>
+          <h2 className="font-semibold text-lg">Writing</h2>
           <Asterisk className='size-8' />
         </span>
         <p className="italic">Evergreen and envolving notes on various topics.</p>
