@@ -1,10 +1,14 @@
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
+import { Phonic } from "./phonic";
 
 export function Hero() {
   return (
-    <header className="space-y-2 py-16">
-      <h1 className="font-bold text-lg">Camin McCluskey</h1>
-      <div className="">
+    <header className="space-y-3 md:space-y-4 py-16">
+      <div>
+        <h1 className="font-bold text-lg">Camin McCluskey</h1>
+        <Phonic />
+      </div>
+      <div>
         <p>Technologist and founder.</p>
         <p>CTO at <a href="https://www.stackfix.com" className="link">Stackfix</a>.</p>
         <p>Writing and tinkering, here and elsewhere.</p>
