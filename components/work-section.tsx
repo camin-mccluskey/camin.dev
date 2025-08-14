@@ -28,7 +28,7 @@ export function WorkSection() {
           <h2 className="font-semibold text-lg">Writing</h2>
           <Asterisk className='size-8' />
         </span>
-        <p className="italic">Evergreen and envolving notes on various topics.</p>
+        <p className="italic">Evergreen and envolving notes. I write to think, not to produce content. AI has been used for research but the words are my own.</p>
       </div>
       <div className="flex flex-col gap-y-2">
         {visiblePosts.map((post) => (
